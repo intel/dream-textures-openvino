@@ -1,3 +1,3 @@
-# OpenVINO support for Dream Textures plugin for Blender
+# OpenVINO™ support for Dream Textures addon in Blender
 
 ### Coming Soon ! 
