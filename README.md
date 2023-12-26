@@ -32,7 +32,7 @@ Skip steps 1 and 2 if you already have Python3 and Git on Windows
 
 1. Clone this repository: <br>
     ```
-    git clone https://github.com/intel-sandbox/dream_textures_openvino.git dream_textures
+    git clone https://github.com/intel/dream-textures-openvino.git dream_textures
     ``` 
 2. Copy this folder - "dream_textures" into your Blender addons folder -  ```C:\Program Files\Blender Foundation\Blender 3.4\3.4\scripts\addons``` <br>
 3. If you can't find the add-on folder, you can look at another third-party add-on you already have in Blender preferences and see where it is located.<br>
