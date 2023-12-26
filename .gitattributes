@@ -1,0 +1,10 @@
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_base/text_encoder.bin filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_base/unet.bin filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_base/vae_decoder.bin filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_depth/cache/16527851708327011881.blob filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_depth/cache/18030390726059041906.blob filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_depth/cache/4023803310294881527.blob filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_depth/cache/531081115737342272.blob filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_depth/text_encoder.bin filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_depth/unet.bin filter=lfs diff=lfs merge=lfs -text
+/stable-diffusion-2-1-openvino-models/Stable_Diffusion_2_1_depth/vae_decoder.bin filter=lfs diff=lfs merge=lfs -text

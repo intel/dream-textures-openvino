@@ -1,0 +1,46 @@
+# openvino and its dependencies
+openvino-dev==2023.1.0
+openvino-telemetry==2023.1.0
+nncf==2.5.0
+
+
+# deep learning frameworks
+onnx>=1.11.0
+
+tensorflow-macos>=2.5,<=2.12; sys_platform == 'darwin' and platform_machine == 'arm64' # macOS M1 and M2
+tensorflow>=2.5,<=2.12; sys_platform == 'darwin' and platform_machine != 'arm64' # macOS x86
+tensorflow>=2.5,<=2.12; sys_platform == 'linux' or platform_system == 'Windows'
+#tensorflow-datasets==4.2.0
+
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.13.1; sys_platform == 'darwin'
+torch==1.13.1+cpu; sys_platform == 'linux' or platform_system == 'Windows'
+torchvision==0.14.1; sys_platform == 'darwin'
+torchvision==0.14.1+cpu; sys_platform == 'linux' or platform_system == 'Windows'
+torchmetrics>=0.11.0
+pytorch-lightning
+
+
+accelerate
+huggingface_hub
+
+transformers>=4.25.1
+diffusers>=0.14.0
+monai>=0.9.1
+open_clip_torch
+
+# others
+numpy>=1.21.0
+opencv-python
+Pillow>=8.3.2
+matplotlib>=3.4,<3.5.3
+scipy
+
+# The packages below are not directly required. They are dependencies of 
+# other dependencies that are pinned to a specific version to avoid
+# compatibility issues or vulnerabilities
+#seaborn>=0.11.0
+scikit-image>=0.19.2
+#jedi>=0.17.2
+setuptools>=56.0.0
+
