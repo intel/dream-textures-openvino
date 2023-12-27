@@ -72,12 +72,12 @@ Here's a few quick guides:
 ## [Image Generation](docs/IMAGE_GENERATION.md)
 Create textures, concept art, and more with text prompts. Learn how to use the various configuration options to get exactly what you're looking for.
 
-![A graphic showing each step of the image generation process](docs/assets/image_generation.png)
+
 
 ## [Texture Projection](docs/TEXTURE_PROJECTION.md)
 Texture entire models and scenes with depth to image.
 
-![A graphic showing each step of the texture projection process](docs/assets/texture_projection.png)
+
 
 ## [History](docs/HISTORY.md)
 Recall, export, and import history entries for later use.
