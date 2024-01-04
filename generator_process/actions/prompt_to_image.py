@@ -730,6 +730,7 @@ class StableDiffusionEngine(diffusers.DiffusionPipeline):
         # 8. Post-processing
 
         print("-------------before vae_decoder----------------")
+        latents = 1 / 0.18215 * latents
         image = self.vae_decoder(latents)[self._vae_d_output]
 
         image = self.postprocess_image(image, meta)
