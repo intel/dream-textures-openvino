@@ -8,9 +8,9 @@
 # Installation
 
 ### A. Install OpenVINO™
-- Download and install [OpenVINO™](https://github.com/openvinotoolkit/openvino/releases) for your operating system.
+- Download and install [OpenVINO™](https://github.com/openvinotoolkit/openvino/releases) for your operating system. Please follow the instructions to download and extract OpenVINO™ from archive. <b>Do not use pypi for installation.</b>
 - Note that this addon has been tested with 2023.1.0 
-- For Intel&reg; Core™ Ultra support, you need to download and install OpenVINO™ from the archive.
+
 
 ### B. Dream-Texture-Openvino Install
 Skip steps 1 and 2 if you already have Python3 and Git on Windows
@@ -42,7 +42,7 @@ Skip steps 1 and 2 if you already have Python3 and Git on Windows
     ``` 
 5. Install all the required python packages and download the models from Hugging face. <br>
    All of the packages are installed to ```dream_textures\.python_dependencies```. <br>
-   The following commands assume they are being run from inside the dream_textures folder. <br>
+   The following commands assume they are being run from inside the dream_textures folder. If you get permission denied after running the below step, please open a new terminal with run as Administrator and try again.  <br>
    ```
    install.bat
    ```
@@ -52,15 +52,16 @@ Skip steps 1 and 2 if you already have Python3 and Git on Windows
     ```
     "C:\Program Files\Blender Foundation\Blender 3.4\3.4\python\bin\python.exe" model_download.py
     ```
-8. Setup OpenVINO™ Environment <br>
+8. Open a new terminal and Setup OpenVINO™ Environment <br>
    <b>Note that you will need to do these steps everytime you start Blender</b>
    ```
    C:\Path\to\where\you\installed\OpenVINO\setupvars.bat
    ```
-7. Start Blender application, and go to Edit->Preferences->Add-on and search for dream texture and enable it. 
+7. Start Blender application from the same terminal as step 8. <br>
    ```
    "C:\Program Files\Blender Foundation\Blender 3.4\blender.exe"
    ```
+   <b>Once Blender application starts go to Edit->Preferences->Add-on and search for dream texture and enable it.</b>
 
 
 
