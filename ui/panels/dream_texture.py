@@ -79,7 +79,7 @@ def dream_texture_panels():
         #    return context.scene.seamless_result
 
         yield from create_panel(space_type, 'UI', DreamTexturePanel.bl_idname, prompt_panel, get_prompt)
-        yield create_panel(space_type, 'UI', DreamTexturePanel.bl_idname, size_panel, get_prompt)
+        #yield create_panel(space_type, 'UI', DreamTexturePanel.bl_idname, size_panel, get_prompt)
         yield from create_panel(space_type, 'UI', DreamTexturePanel.bl_idname, init_image_panels, get_prompt)
         yield from create_panel(space_type, 'UI', DreamTexturePanel.bl_idname, advanced_panel, get_prompt)
         yield create_panel(space_type, 'UI', DreamTexturePanel.bl_idname, actions_panel, get_prompt)
@@ -238,14 +238,18 @@ def advanced_panel(sub_panel, space_type, get_prompt):
             infer_model = generated_args['infer_model'].name
        
           
-            layout.prop(get_prompt(context), "infer_device_text")
             
-         
+            if infer_model == "Stable_Diffusion_1_5":
+                layout.prop(get_prompt(context), "Tiling")
+
+
+            layout.prop(get_prompt(context), "infer_device_text")
             if infer_model == "Stable_Diffusion_1_5_int8" or infer_model == "Stable_Diffusion_1_5_controlnet_depth_int8":
                  layout.prop(get_prompt(context), "infer_device_unet_pos")
                  layout.prop(get_prompt(context), "infer_device_unet_neg")
             else:
                 layout.prop(get_prompt(context), "infer_device_unet")
+                
             
 
             layout.prop(get_prompt(context), "infer_device_vae")
