@@ -54,6 +54,7 @@ class LoadModel(bpy.types.Operator):
     bl_description = "Load and compile the SD models"
     bl_options = {'REGISTER'}
     Models_loaded_512 = False
+    Models_loaded_512_tile = False
     Models_loaded_512_int8 = False
     Models_loaded_depth_512 = False
     Models_loaded_depth_512_int8 = False
@@ -84,9 +85,12 @@ class LoadModel(bpy.types.Operator):
         infer_device_text = generated_args['infer_device_text'].name
         
 
-        infer_device_vae = generated_args['infer_device_vae'].name    
+        infer_device_vae = generated_args['infer_device_vae'].name  
 
-        model_path = Path(weight_path) / infer_model.name / infer_model_size
+        if generated_args['Tiling']:
+            model_path = Path(weight_path) / infer_model.name / infer_model_size / "asymmetric_tiled_model"
+        else:
+            model_path = Path(weight_path) / infer_model.name / infer_model_size
         self.report({'INFO'}, infer_model.name)
         
         #scene.dream_textures_info = "Loading Models..."
@@ -138,12 +142,12 @@ class LoadModel(bpy.types.Operator):
                 infer_device_unet_neg = generated_args['infer_device_unet_neg'].name
                 infer_device = [infer_device_text, infer_device_unet_pos, infer_device_unet_neg, infer_device_vae]
                 f = gen.load_models_int8(model_path,infer_device)
-                set_loadmodel(infer_model.name)
+                set_loadmodel(infer_model.name, None)
         else:
                 infer_device_unet = generated_args['infer_device_unet'].name
                 infer_device = [infer_device_text, infer_device_unet, infer_device_vae]
                 f = gen.load_models(model_path,infer_device)
-                set_loadmodel(infer_model.name)
+                set_loadmodel(infer_model.name,generated_args['Tiling'])
             
   
 
@@ -277,12 +281,14 @@ def set_loadmodel_depth(infer_model_name):
         LoadModel.Models_loaded_depth_512 = True
         LoadModel.Models_loaded_depth_512_int8 = False
         LoadModel.Models_loaded_512 = False
+        LoadModel.Models_loaded_512_tile = False
         LoadModel.Models_loaded_512_int8 = False
     elif infer_model_name == 'Stable_Diffusion_1_5_controlnet_depth_int8':
         #print("In depth model_size_768 ")
         LoadModel.Models_loaded_depth_512 = False
         LoadModel.Models_loaded_depth_512_int8 = True
         LoadModel.Models_loaded_512 = False
+        LoadModel.Models_loaded_512_tile = False
         LoadModel.Models_loaded_512_int8 = False
     
     #print(" LoadModel.Models_loaded_depth OUTSIDE in dream texture---", LoadModel.Models_loaded_depth_768)
@@ -290,17 +296,27 @@ def set_loadmodel_depth(infer_model_name):
     #return True
     
 
-def set_loadmodel(infer_model_name):
-    if infer_model_name == 'Stable_Diffusion_1_5':
-        #print("In  model_size_512 ")
+def set_loadmodel(infer_model_name, tile):
+    if infer_model_name == 'Stable_Diffusion_1_5' and tile == None:
+        #print("In  Stable_Diffusion_1_5 ")
         LoadModel.Models_loaded_512 = True
+        LoadModel.Models_loaded_512_tile = False
         LoadModel.Models_loaded_depth_512_int8 = False
         LoadModel.Models_loaded_depth_512 = False
-        LoadModel.Models_loaded_depth_512_int8 = False     
+        LoadModel.Models_loaded_depth_512_int8 = False 
+
+    elif infer_model_name == 'Stable_Diffusion_1_5' and tile:
+        #print("In  Stable_Diffusion_1_5 WITH TILE ")
+        LoadModel.Models_loaded_512 = False
+        LoadModel.Models_loaded_512_tile = True
+        LoadModel.Models_loaded_depth_512_int8 = False
+        LoadModel.Models_loaded_depth_512 = False
+        LoadModel.Models_loaded_depth_512_int8 = False            
 
     elif infer_model_name == 'Stable_Diffusion_1_5_int8':
         #print("In  model_size_768 ")
         LoadModel.Models_loaded_512 = False
+        LoadModel.Models_loaded_512_tile = False
         LoadModel.Models_loaded_512_int8 = True
         LoadModel.Models_loaded_depth_512 = False
         LoadModel.Models_loaded_depth_512_int8 = False        
@@ -325,10 +341,15 @@ class DreamTexture(bpy.types.Operator):
            # print("D.  LoadModel.Models_loaded---", LoadModel.Models_loaded)
            # print("E.  ProjectLoadModel.Models_loaded_depth_project in Dream---", ProjectLoadModel.Models_loaded_depth_project)
            
-            if generated_args["infer_model"].name == "Stable_Diffusion_1_5" and LoadModel.Models_loaded_512 == True:
+            if generated_args["infer_model"].name == "Stable_Diffusion_1_5" and LoadModel.Models_loaded_512 == True and not generated_args['Tiling']:
                     #print("In generate Models_loaded_512", LoadModel.Models_loaded_512)
                     
                     pass  
+            
+            elif  generated_args["infer_model"].name == "Stable_Diffusion_1_5" and  LoadModel.Models_loaded_512_tile == True and generated_args['Tiling']:
+                    #print("In generate Models_loaded_512 tile", LoadModel.Models_loaded_512_tile)
+                    
+                    pass            
             elif generated_args["infer_model"].name == "Stable_Diffusion_1_5_int8" and LoadModel.Models_loaded_512_int8 == True:
                     #print("In generate Models_loaded_768", LoadModel.Models_loaded_768)
                     pass  
@@ -595,6 +616,7 @@ def kill_loadmodels():
         ProjectLoadModel.Models_loaded_depth_project_512 = False
         ProjectLoadModel.Models_loaded_depth_project_512_int8 = False
         LoadModel.Models_loaded_512 = False
+        LoadModel.Models_loaded_512_tile = False
         LoadModel.Models_loaded_512_int8 = False
         LoadModel.Models_loaded_depth_512 = False
         LoadModel.Models_loaded_depth_512_int8 = False         

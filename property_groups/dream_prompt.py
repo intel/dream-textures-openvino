@@ -115,6 +115,7 @@ attributes = {
     
     "show_advanced": BoolProperty(name="", default=False),
     "random_seed": BoolProperty(name="Random Seed", default=True, description="Randomly pick a seed"),
+    "Tiling": BoolProperty(name="Seamless Tiling", default=True, description="uses a circular padding to create a perfectly seamless image on both x and y axis, which works great for textures."),
     "seed": StringProperty(name="Seed", default="0", description="Manually pick a seed", update=seed_clamp),
     "iterations": IntProperty(name="Iterations", default=1, min=1, description="How many images to generate"),
     "steps": IntProperty(name="Steps", default=25, min=1),
@@ -256,7 +257,8 @@ def generate_args(self):
     args['pipeline'] = Pipeline[args['pipeline']]
    # args['outpaint_origin'] = (args['outpaint_origin'][0], args['outpaint_origin'][1])
 
-    #args['seamless_axes'] = SeamlessAxes(args['seamless_axes'])
+    if not args['Tiling']:
+        args['Tiling'] = None
     args['width'] = args['width'] if args['use_size'] else None
     args['height'] = args['height'] if args['use_size'] else None
     return args

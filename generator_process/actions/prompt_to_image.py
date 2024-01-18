@@ -886,6 +886,7 @@ ov_pipe = None
 def load_models(self,model_path,infer_device):
     global ov_pipe
     try:
+        print("model path in load", model_path)
         ov_pipe = StableDiffusionEngine(
             model = model_path,
             device = infer_device)
