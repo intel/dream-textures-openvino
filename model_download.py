@@ -11,9 +11,13 @@ access_token  = None
 
 def download_hf_model(repo_id, model_fp16,model_int8):
 
-
-    #download_folder = snapshot_download(repo_id=repo_id, token=access_token)
-    download_folder = snapshot_download(repo_id=repo_id, token=access_token)
+    while True:
+        try:
+            download_folder = snapshot_download(repo_id=repo_id, token=access_token)
+            break
+        except Exception as e:
+             print("Error retry:" + str(e))
+        
     SD_path_FP16 = os.path.join(install_location, model_fp16, "model_size_512")
     SD_path_INT8 = os.path.join(install_location, model_int8, "model_size_512")
 

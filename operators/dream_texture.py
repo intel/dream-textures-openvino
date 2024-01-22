@@ -87,7 +87,7 @@ class LoadModel(bpy.types.Operator):
 
         infer_device_vae = generated_args['infer_device_vae'].name  
 
-        if generated_args['Tiling']:
+        if generated_args['Tiling'] and infer_model.name == "Stable_Diffusion_1_5":
             model_path = Path(weight_path) / infer_model.name / infer_model_size / "asymmetric_tiled_model"
         else:
             model_path = Path(weight_path) / infer_model.name / infer_model_size
