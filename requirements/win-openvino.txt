@@ -7,18 +7,19 @@ nncf==2.5.0
 # deep learning frameworks
 onnx>=1.11.0
 
-tensorflow-macos>=2.5,<=2.12; sys_platform == 'darwin' and platform_machine == 'arm64' # macOS M1 and M2
-tensorflow>=2.5,<=2.12; sys_platform == 'darwin' and platform_machine != 'arm64' # macOS x86
-tensorflow>=2.5,<=2.12; sys_platform == 'linux' or platform_system == 'Windows'
+
+tensorflow>=2.12.1
+
 #tensorflow-datasets==4.2.0
 
 --find-links https://download.pytorch.org/whl/torch_stable.html
-torch==1.13.1; sys_platform == 'darwin'
-torch==1.13.1+cpu; sys_platform == 'linux' or platform_system == 'Windows'
-torchvision==0.14.1; sys_platform == 'darwin'
-torchvision==0.14.1+cpu; sys_platform == 'linux' or platform_system == 'Windows'
-torchmetrics>=0.11.0
+#torch==1.13.1; sys_platform == 'darwin'
+#torch==1.13.1+cpu; sys_platform == 'linux' or platform_system == 'Windows'
+#torchvision==0.14.1; sys_platform == 'darwin'
+#torchvision==0.14.1+cpu; sys_platform == 'linux' or platform_system == 'Windows'
+#torchmetrics>=0.11.0
 pytorch-lightning
+torch>=2.1
 
 
 accelerate
