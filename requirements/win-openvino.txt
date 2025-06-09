@@ -40,8 +40,7 @@ scipy
 # The packages below are not directly required. They are dependencies of 
 # other dependencies that are pinned to a specific version to avoid
 # compatibility issues or vulnerabilities
-#seaborn>=0.11.0
+
 scikit-image>=0.19.2
-#jedi>=0.17.2
 setuptools>=56.0.0
 
