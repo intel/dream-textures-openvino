@@ -20,7 +20,7 @@ Skip steps 1 and 2 if you already have Python3 and Git on Windows
 - Double click on the installer to run it, and follow the steps in the installer. Check the box to add Python to your PATH, and to install py. At the end of the installer, there is an option to disable the PATH length limit. It is recommended to click this. <br>
 
 #### 2. Install Git
-- Download and install [GIT](https://git-scm.com/)
+- Download and Install [GIT](https://git-scm.com/)
 
 #### 3. Install the MSFT Visual C++ Runtime
 - Download and install [the latest supported redist](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist).
@@ -69,7 +69,6 @@ Skip steps 1 and 2 if you already have Python3 and Git on Windows
 
 Here's a few quick guides:
 
-
 ## [Image Generation](docs/IMAGE_GENERATION.md)
 Create textures, concept art, and more with text prompts. Learn how to use the various configuration options to get exactly what you're looking for.
 
@@ -82,7 +81,6 @@ Texture entire models and scenes with depth to image.
 
 ## [History](docs/HISTORY.md)
 Recall, export, and import history entries for later use.
-
 
 
 # Acknowledgements
